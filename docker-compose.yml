@@ -1,0 +1,20 @@
+services:
+  steamcmd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    ports:
+      - 27015:27015/udp
+      - 27005:27005
+    command: 'bash'
+    networks:
+      common:
+        ipv4_address: 172.19.0.2
+
+networks:
+  common:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/24
